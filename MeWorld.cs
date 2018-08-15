@@ -22,6 +22,7 @@ using Terraria.DataStructures;
 using System.Reflection;
 using Terraria.IO;
 using Terraria.ModLoader.UI;
+using CalamityMod;
 
 namespace MusicMadness
 {
@@ -96,6 +97,44 @@ namespace MusicMadness
         {
             int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Pots"));
             tasks[PotsIndex] = (new PassLegacy("Pots", delegate { }));
+
+            Mod Calamity = ModLoader.GetMod("CalamityMod");
+            if (Calamity != null)
+            {
+                CalamityTasks1();
+            }
+        }
+
+        public void CalamityTasks1()
+        {
+            FieldInfo info1 = typeof(CalamityWorld).GetField("fuhX", BindingFlags.Static | BindingFlags.NonPublic);
+            int fuhX = (int)info1.GetValue(null);
+
+            FieldInfo info2 = typeof(CalamityWorld).GetField("fuhY", BindingFlags.Static | BindingFlags.NonPublic);
+            int fuhY = (int)info2.GetValue(null);
+
+            int num26 = WorldGen.genRand.Next((int)((double)Main.maxTilesX * 0.1), (int)((double)Main.maxTilesX * 0.15));
+            int num27 = Main.maxTilesY - 100;
+            fuhX = num26;
+            fuhY = num27;
+            CalamityWorld.UnderworldIsland(num26, num27, 180, 201, 120, 136);
+            CalamityWorld.UnderworldIsland(num26 - 50, num27 - 30, 100, 111, 60, 71);
+            CalamityWorld.UnderworldIsland(num26 + 50, num27 - 30, 100, 111, 60, 71);
+            CalamityWorld.ChasmGenerator(fuhX - 110, fuhY - 10, WorldGen.genRand.Next(150) + 150, false);
+            CalamityWorld.ChasmGenerator(fuhX + 110, fuhY - 10, WorldGen.genRand.Next(150) + 150, false);
+            CalamityWorld.UnderworldIsland(num26 - 150, num27 - 30, 60, 66, 35, 41);
+            CalamityWorld.UnderworldIsland(num26 + 150, num27 - 30, 60, 66, 35, 41);
+            CalamityWorld.UnderworldIsland(num26 - 180, num27 - 20, 60, 66, 35, 41);
+            CalamityWorld.UnderworldIsland(num26 + 180, num27 - 20, 60, 66, 35, 41);
+            CalamityWorld.UnderworldIslandHouse(fuhX, fuhY + 30, 1323);
+            CalamityWorld.UnderworldIslandHouse(fuhX - 22, fuhY + 15, 1322);
+            CalamityWorld.UnderworldIslandHouse(fuhX + 22, fuhY + 15, 535);
+            CalamityWorld.UnderworldIslandHouse(fuhX - 50, fuhY - 30, 112);
+            CalamityWorld.UnderworldIslandHouse(fuhX + 50, fuhY - 30, 906);
+            CalamityWorld.UnderworldIslandHouse(fuhX - 150, fuhY - 30, 218);
+            CalamityWorld.UnderworldIslandHouse(fuhX + 150, fuhY - 30, 3019);
+            CalamityWorld.UnderworldIslandHouse(fuhX - 180, fuhY - 20, 278);
+            CalamityWorld.UnderworldIslandHouse(fuhX + 180, fuhY - 20, 220);
         }
     }
 }
