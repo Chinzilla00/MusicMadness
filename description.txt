@@ -1,0 +1,106 @@
+Combine Any Accessory With Any Music Box!
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Version Details:
+
+1.0.0:
+Released!
+
+1.1.0:
+Reforging Fix!
+Bonus Abilitys!
+Shiny Bonus!
+Glitch Bonus!
+Beefy Bonus!
+
+1.1.1:
+Hotfix!
+
+1.2.0:
+Abilitys Can Save And Be Bought Again!
+Text For Abilitys Breaking!
+Emblem In User Interface Fix!
+Multiplayer Fix!
+Easier Chance!
+Glitch Bonus Change!
+Beefy Bonus Change!
+
+1.2.1:
+Hotfix!
+
+1.2.2:
+Hotfix!
+
+1.3.0:
+Super Boss?
+Soulless Bonus!
+Debuffless Bonus!
+More Items!
+New User Interface For Buyables!
+GitHub!
+[Redacted?]
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Version Bugs:
+
+1.0.0:
+User Interface Crashes If Done On Multiplayer.
+Putting A Music Emblem In User Interface May Break The Ability.
+Reforging Will Ruin And Break Your Music Emblem.(Fixed By: jopojelly)
+The 1337 Looks Funny And Not What I Want.
+Error Cactus Appears In My World Ecks Dee.
+
+1.1.0:
+Putting A Music Emblem In User Interface May Break The Ability.
+User Interface Crashes If Done On Multiplayer.
+Reforging Is Free After First Reforge.
+Musician Would Not Attack Correctly.
+
+1.1.1:
+Putting A Music Emblem In User Interface May Break The Ability.
+User Interface Crashes If Done On Multiplayer.
+Error Cactus Appears In My World Ecks Dee.
+
+1.2.0:
+Glitch Bonus Would Not Dissapear Upon Accessory Taken Off.
+Abilitys Were Buggy.
+Glitch Bonus Had No Timer.
+Price and Saving Issues.
+
+1.2.1:
+Error Reforing.
+Multiplayer Can Not Enhance Correctly.
+Error Cactus Appears In My World Ecks Dee.
+
+1.2.2:
+Multiplayer Can Not Enhance Correctly.
+
+1.3.0:
+Multiplayer Can Not Enhance Correctly.
+Error Cactus Appears In My World Ecks Dee.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Bonus Abilitys!
+
+Shiny:
+Extra Coins May Drop On Death!
+
+Glitch:
+[Redacted?]
+
+Beefy:
+Chance To Reduce Damage When Struck!
+
+Soulless:
+[Redacted?]
+
+Debuffless:
+A Rare Chance To Remove Debuffs Early!
+
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Abilitys Have A 1/10 Chance To Dissapear.
+Abilitys Have A 1/5 Chance To Dissapear If The Ability Is Redacted On This List.

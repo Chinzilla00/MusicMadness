@@ -1,0 +1,152 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF16A75C-08B3-4CBF-9B10-FF5FBA6CA05E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>MusicMadness</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>0</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>MusicMadness</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\XNL dll Files\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\XNL dll Files\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\XNL dll Files\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Desktop\XNL dll Files\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
+    <Reference Include="ReLogic">
+      <HintPath>..\..\..\My Games\Terraria\ModLoader\References\ReLogic.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Terraria">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Microsoft.Xna.Framework.dll" />
+    <Content Include="bin\Debug\Microsoft.Xna.Framework.Game.dll" />
+    <Content Include="bin\Debug\Microsoft.Xna.Framework.Graphics.dll" />
+    <Content Include="bin\Debug\Microsoft.Xna.Framework.Xact.dll" />
+    <Content Include="bin\Debug\MusicMadness.dll" />
+    <Content Include="bin\Debug\MusicMadness.pdb" />
+    <Content Include="bin\Debug\ReLogic.dll" />
+    <Content Include="bin\Debug\Terraria.exe" />
+    <Content Include="Buffs\Escapeless.png" />
+    <Content Include="Buffs\QuickKill.png" />
+    <Content Include="build.txt" />
+    <Content Include="description.txt" />
+    <Content Include="ImportDefaultDll.csproj.user" />
+    <Content Include="Items\BrokenMusicEmblem.png" />
+    <Content Include="Items\MusicEmblem.png" />
+    <Content Include="Items\MusicianVoodooDoll.png" />
+    <Content Include="NPCs\Musician.png" />
+    <Content Include="NPCs\Musician_Head.png" />
+    <Content Include="obj\Debug\ClassLibrary.dll" />
+    <Content Include="obj\Debug\ClassLibrary.pdb" />
+    <Content Include="obj\Debug\MusicMadness.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\MusicMadness.dll" />
+    <Content Include="obj\Debug\MusicMadness.pdb" />
+    <Content Include="Projectiles\RisingBoneLava.png" />
+    <Content Include="Projectiles\spikes.png" />
+    <Content Include="Sounds\Music\TheOutside.wav" />
+    <Content Include="Sounds\Music\UnusualCause.wav" />
+    <Content Include="UI\Meblob1.png" />
+    <Content Include="UI\Meblob10.png" />
+    <Content Include="UI\Meblob2.png" />
+    <Content Include="UI\Meblob3.png" />
+    <Content Include="UI\Meblob4.png" />
+    <Content Include="UI\Meblob5.png" />
+    <Content Include="UI\Meblob6.png" />
+    <Content Include="UI\Meblob7.png" />
+    <Content Include="UI\Meblob8.png" />
+    <Content Include="UI\Meblob9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buffs\Escapeless.cs" />
+    <Compile Include="Buffs\QuickKill.cs" />
+    <Compile Include="Items\BrokenMusicEmblem.cs" />
+    <Compile Include="Items\MusicEmblem.cs" />
+    <Compile Include="Items\MusicianVoodooDoll.cs" />
+    <Compile Include="MeWorld.cs" />
+    <Compile Include="MusicMadness.cs" />
+    <Compile Include="NPCs\Musician.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Playerone.cs" />
+    <Compile Include="Projectiles\RisingBoneLava.cs" />
+    <Compile Include="Projectiles\spikes.cs" />
+    <Compile Include="UI\MyUI.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".vs\MusicMadness\DesignTimeBuild\.dtbcache" />
+    <None Include=".vs\MusicMadness\v15\.suo" />
+    <None Include=".vs\MusicMadness\v15\Server\sqlite3\db.lock" />
+    <None Include=".vs\MusicMadness\v15\Server\sqlite3\storage.ide" />
+    <None Include=".vs\MusicMadness\v15\Server\sqlite3\storage.ide-shm" />
+    <None Include=".vs\MusicMadness\v15\Server\sqlite3\storage.ide-wal" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="obj\Debug\build.force" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="obj\Debug\MusicMadness.csproj.CopyComplete" />
+    <None Include="obj\Debug\MusicMadness.csproj.CoreCompileInputs.cache" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="Properties\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+  <PropertyGroup>
+    <PostBuildEvent>"D:\SteamLibrary\steamapps\common\Terraria\tModLoaderServer.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

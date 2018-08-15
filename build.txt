@@ -1,0 +1,12 @@
+author = Mep Pep
+
+version = 1.3.0
+displayName = Music Madness
+homepage = https://github.com/Chinzilla00/Main
+
+hideCode = true
+hideResources = true
+includeSource = false
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*, COMPILE_*.bat, COMPILE_*.txt
+
+includePDB = true

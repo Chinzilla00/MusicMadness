@@ -1,0 +1,109 @@
+New Abilitys!:
+
+Debuffless:
+Rare Chance To Remove Debuffs Early!
+
+Soulless (Redacted):
+When The Corpse Spawns Phase4 And Phase5 Happens!
+
+Unbreakable?:
+A Broken Music Emblem's Ability!
+
+New Boss!:
+
+Summon: Post Moonlord Musician Voodoo Doll Buyable From Clothier: Kill Him In Hell!
+
+Phase1: Buring Bones Rise: All Players Are Horrified And Bones Rise To Surface That One Shot You, But Going Out Of Sight Bones Fall One Shotting You Too.
+Complete Phase1 By: Bones Reach 0 Depth.
+
+Phase2: Collect Melting Bones: Teleports All Players To Center Of Open Area On Surface Thats 200 Blocks Wide And Gives Them Creative Shock And Horrified, Spawns Arena Of Unbreakable Biome Making Melted Bone Blocks 150x150 With 50 Melted Bone Blocks Covering All Sides And Gives All Players Obstruct Debuff For 10 Seconds, After 10 Seconds New Enemys Will Spawn In Biome Dropping Melting Bones, At the Position Everyone Spawned There Is A Crafting Station Floating, Anyone Dieing Results In Arena Being Destroyed And All Players Automatically Die If Not Dead.
+Complete Phase2 By: Collecting 100 Melting Bones And Crafting The Corpse Voodoo Doll Then Using It.
+
+Phase3: Fight The Corpse: The Crafting Station Turns Into The Corpse, All Players Are Horrified And Have Creative Shock, The Corpse Attacks By Teleporting Around At Rapid Speeds, He Has 5 Different Attacks, Each Attack Is Done Randomly For 15 Seconds, There Is 1 Attack Of The 5 He Takes A Breather And Becomes Attackable, He Does Not Have A Health Bar, Anyone Dieing Results In Arena Being Destroyed And All Players Automatically Die If Not Dead, Upon Completion Without Soulless Arena Gets Destroyed And He Fades Away Then Teleports Everyone To There Spawn, Upon Completion Without Soulless You Get Obstruct For 10 Seconds But Lose Creative Shock And Horrified, You Have 0% Damage Reduction To His Attacks.
+Complete Phase3 By: Hitting The Boss In His Vulnerable Stage 5 Times.
+
+Drops:
+Nothing?
+Status Message Appears Saying "Congrats! You Unlocked A New Random Music Emblem Ability Known As: (Ability Unlocked)!"
+Status Message Appears Saying "YOU ARE NOT READY? WHAT A SHAME!"
+
+Phase4?: Just A Warm Up (Phase3 Addon): 2 New Attacks After The 5th Hit, Also His Attackable Stage Is Shorter By 5 Seconds, And He Has 1 Attack That One Shots, The 2 New Attacks Are 20 Seconds Instead Of 15, Players Not Soulless Are Turned To Bound Wisps At The Start Of Phase4, They Are Given The Drops Of Phase3, Killing A Bound Wisp Player Gives You +5% Damage Reduction To His Attacks, The Max Bound Wisps Are 3, He Only Does The Vulnerable Attack When All Bound Wisps Are Dead, Anyone Dieing Results In Arena Being Destroyed And All Players Automatically Die If Not Dead.
+Complete Phase4 By: Hitting The Boss In His Vulnerable Stage Equal to 5 Minus The Initial Number Of Bound Wisps.
+
+Phase5?: And Finally His Death: This Phase He Sends Out Really Fast Shock Waves That One Shot If They Hit You For 30 Seconds, Then He Blows Up, Getting Hit By His Explosion Also One Shots You, After You Complete Phase5 You Must Wait 10 Seconds, Then The Arena Gets Destroyed And It Teleports Everyone To Spawn, All Players Are Horrified And Have Creative Shock, Anyone Dieing Results In Arena Being Destroyed And All Players Automatically Die If Not Dead, After Phase5 Horrified And Creative Shock Are No More But You Are Given Obstruct For 10 Seconds.
+Complete Phase5 By: Surviving His Final Explosion.
+
+Drops:
+Melting Bones, 25-50, 100%, Bag
+Music Dust, 10-15, 100%, Bag
+Credits, 1 Per Player And World, 100%, Bag
+Super Healing Potions, 20-30, 100%, Bag
+Platinum Coins, 10, 100%, Bag
+The Corpse Treasure Bag, 1 Per Player, 100%, Spawned
+Musician Voodoo Doll, 1, 20%, Bag
+Mep Pep's Or Miles' Developer Armor, All Peices, 10%, Bag
+The Corpse Trophy, 1 Per Kill, 10%, Spawned
+A Broken Music Emblem, 1, 5%, Bag
+The Corpse Phase1 Music Box, 1, 2%, Bag
+The Corpse Phase2 Music Box, 1, 2%, Bag
+The Corpse Phase3 Music Box, 1, 2%, Bag
+The Corpse Phase4 Music Box, 1, 2%, Bag
+The Corpse Phase5 Music Box, 1, 2%, Bag
+Musician Figurine, 1 Per Kill, 0.1%, Spawned
+Status Message Appears Saying "Congrats! You Unlocked A New Random Music Emblem Ability Known As: (Ability Unlocked)!"
+Status Message Appears Saying "Congrats Hero! You Did It! The Corpse Is No More! Now Stop Playing!"
+Status Message Appears Saying "Your Emblem Now Displays Your Heroship!"
+
+Items:
+A Broken Music Emblem: Can Be Used When Buying Abilitys To Give The Ability Unbreakable Until Replaced!
+Musician Figurine: Just A 1x2 Musician Figurine Decoration!
+Credits: Displays Credits In Your Personal Chat When Used!
+Melting Bones: Used To Craft The Corpse Voodoo Doll And When Combind With Music Dust It Crafts A Weapon!
+Music Dust: Used With Melting Bones To Craft A Weapon Used By All Classes!
+Corpse Voodoo Doll: Activates The Corpse's Phase3!
+
+New Status Messages!:
+
+"Impending Doom Approches...": Waits 3 Seconds Before Instantly Killing All Players If Not Dead Yet And Despawns The Arena: Used If You Break The Crafting Station.
+
+"This Arena Has Enough Dead Bodys... It Won't Hold Any More... Sorry...": Despawns The Arena And Kills All Players Still Alive: Used When Any Player Dies In The Arena.
+
+"Congrats! You Unlocked A New Random Music Emblem Ability Known As: (Ability Unlocked)!": Gives Player A New Music Emblem Ability To Buy!: Stated.
+
+"YOU ARE NOT READY? WHAT A SHAME!": Creepy Laugh Plays: Stated.
+
+"Congrats Hero! You Did It! The Corpse Is No More! Now Stop Playing!": Nothing Really... Just A The Binding Of Isaac Reference...: Stated.
+
+"Your Emblem Now Displays Your Heroship!": Your Emblem Says Hero On It As A New ToolTip: Stated.
+
+"{Credits}":Too Long To Show: When Using The Credits Item.
+
+Enemys!:
+
+The Hand: Spawns In Melting Bone Biome: Swipes Across The Floor At High Speeds And Gets Dizzy Upon Hitting A Wall Making It Vunerable.
+
+A Chained Beast: Spawns In Hell And Melting Bone Biome: Found Chained To Any Block And Can Move The Chain Very Slowly One Block To Another, You Can Kill It By Having It Fall Too.
+
+The Forgotten: Strait Foward Reference LOL: Spawns In Melting Bones Biome: Can throw a bone like a boomerang and melee damage is doubled.
+
+Bound Wisp: A Player's Soul: Bounces Around The Room At Very Fast Speeds, To Kill It You Need To [REDACTED].
+
+Eerie Face: Rarest Enemy In Game Found In Melting Bones Biome: [REDACTED].
+
+Attacks!:
+
+1:Throws Bones at Rapid Speed Kinda like Queen Bee (High Damage) 15 Seconds.
+
+2:Closes The Arena Inward With Burning Bones (Very High Damage) 15 Seconds.
+
+3:Teleports Close To The Player And Trys To Wack Him With A Spine (High Damage) 15 Seconds.
+
+4:Opens These Holes In The Ground In 4 Random Spots Going Down Teleports You Out Another And Hurts You (Insanely High Damage), Also 2 Gross Looking Worms Come Out Of 2 Of The Holes And Go Back In The Unused 2 Holes (High Damage) 15 Seconds.
+
+5:Attackable (No Damage) 15 Seconds/10 Seconds.
+
+6?:Teleports To The Center And Shoots A Brimstone Like Attack Around In A Circle Pretty Fast (Very High Damage) 20 Seconds.
+
+7?:Teleports To Left Or Right Side And Opens Another Giant Hole From The Side That Tries To Suck You Up (One Shot) 20 Seconds.
+
+Phase5 Attack?: Look Up.
