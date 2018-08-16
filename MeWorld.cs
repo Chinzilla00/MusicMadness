@@ -53,37 +53,33 @@ namespace MusicMadness
 
         public override void NetSend(BinaryWriter writer)
         {
-            BitsByte flags = new BitsByte();
-            flags[0] = downedTheCorpse;
-            writer.Write(flags);
+            BitsByte fags = new BitsByte();
+            fags[0] = downedTheCorpse;
+            writer.Write(fags);
         }
         public override void NetReceive(BinaryReader reader)
         {
-            BitsByte flags = reader.ReadByte();
-            downedTheCorpse = flags[0];
+            BitsByte fags = reader.ReadByte();
+            downedTheCorpse = fags[0];
         }
 
-        public override void PreWorldGen()
+        public override void PostWorldGen()
         {
             int maxtilesY = 250;
 
             FieldInfo info = typeof(WorldFileData).GetField("WorldSizeY", BindingFlags.Instance | BindingFlags.Public);
             int get = (int)info.GetValue(Main.ActiveWorldFileData);
-            info.SetValue(Main.ActiveWorldFileData, maxtilesY);
+            info.SetValue(Main.ActiveWorldFileData, Main.maxTilesY + maxtilesY);
 
             info = typeof(WorldGen).GetField("lastMaxTilesY", BindingFlags.Static | BindingFlags.NonPublic);
             get = (int)info.GetValue(null);
-            info.SetValue(null, maxtilesY);
+            info.SetValue(null, Main.maxTilesY + maxtilesY);
 
             Main.maxTilesY += maxtilesY;
 
             Main.bottomWorld += (float)(maxtilesY * 16);
             Main.maxSectionsX = Main.maxTilesX / 200;
             Main.maxSectionsY = Main.maxTilesY / 150;
-
-            Main.tile = new Tile[Main.maxTilesX, Main.maxTilesY];
-
-            WorldGen.clearWorld();
         }
 
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
