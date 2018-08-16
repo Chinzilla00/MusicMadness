@@ -22,7 +22,6 @@ using Terraria.DataStructures;
 using System.Reflection;
 using Terraria.IO;
 using Terraria.ModLoader.UI;
-using CalamityMod;
 
 namespace MusicMadness
 {
@@ -107,11 +106,6 @@ namespace MusicMadness
 
                 }));
             }
-        }
-
-        public void CalamityTasks()
-        {
-
         }
     }
 }
