@@ -67,12 +67,6 @@ namespace MusicMadness
         {
             int maxtilesY = 250;
 
-            Mod Calamity = ModLoader.GetMod("CalamityMod");
-            if (Calamity != null)
-            {
-                maxtilesY += 200;
-            }
-
             FieldInfo info = typeof(WorldFileData).GetField("WorldSizeY", BindingFlags.Instance | BindingFlags.Public);
             int get = (int)info.GetValue(Main.ActiveWorldFileData);
             info.SetValue(Main.ActiveWorldFileData, maxtilesY);
