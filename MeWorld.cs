@@ -102,8 +102,8 @@ namespace MusicMadness
             {
                 tasks.Insert(num1 + 1, new PassLegacy("InsertBonePunHere", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "🅑🅡🅔🅐🅚🅘🅝🅖 🅨🅞🅤🅡 🅑🅞🅝🅔🅢...";
-
+                    progress.Message = "[c/FF0000:Breaking Your Bones...]";
+                    
                 }));
             }
         }
