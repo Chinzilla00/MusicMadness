@@ -22,6 +22,8 @@ using Terraria.DataStructures;
 using System.Reflection;
 using Terraria.IO;
 using Terraria.ModLoader.UI;
+using Terraria.Graphics;
+using Terraria.Map;
 
 namespace MusicMadness
 {
@@ -63,39 +65,128 @@ namespace MusicMadness
             downedTheCorpse = fags[0];
         }
 
-        public override void PostWorldGen()
-        {
-            int maxtilesY = 250;
-
-            FieldInfo info = typeof(WorldFileData).GetField("WorldSizeY", BindingFlags.Instance | BindingFlags.Public);
-            int get = (int)info.GetValue(Main.ActiveWorldFileData);
-            info.SetValue(Main.ActiveWorldFileData, Main.maxTilesY + maxtilesY);
-
-            info = typeof(WorldGen).GetField("lastMaxTilesY", BindingFlags.Static | BindingFlags.NonPublic);
-            get = (int)info.GetValue(null);
-            info.SetValue(null, Main.maxTilesY + maxtilesY);
-
-            Main.maxTilesY += maxtilesY;
-
-            Main.bottomWorld += (float)(maxtilesY * 16);
-            Main.maxSectionsX = Main.maxTilesX / 200;
-            Main.maxSectionsY = Main.maxTilesY / 150;
-        }
-
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Pots"));
             tasks[PotsIndex] = (new PassLegacy("Pots", delegate { }));
 
-            int num1 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Floating Islands Houses"));
+            int num1 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Final Cleanup"));
             if (num1 != -1)
             {
-                tasks.Insert(num1 + 1, new PassLegacy("InsertBonePunHere", delegate (GenerationProgress progress)
+                tasks.Insert(num1 + 3, new PassLegacy("InsertBonePunHere", delegate (GenerationProgress progress)
                 {
-                    progress.Message = "[c/FF0000:Breaking Your Bones...]";
-                    
+                    progress.Message = "Breaking Your Bones...";
+                    int maxtilesY = 250;
+
+                    Main.ActiveWorldFileData.WorldSizeY = Main.maxTilesY + maxtilesY;
+
+                    FieldInfo info = typeof(WorldGen).GetField("lastMaxTilesY", BindingFlags.Static | BindingFlags.NonPublic);
+                    int get = (int)info.GetValue(null);
+                    info.SetValue(null, Main.maxTilesY + maxtilesY);
+
+                    Main.maxTilesY += maxtilesY;
+
+                    Main.bottomWorld += (float)(maxtilesY * 16);
+                    Main.maxSectionsY = Main.maxTilesY / 150;
+
+                    Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY);
+                    MethodInfo methodInfo = typeof(Main).GetMethod("InitMap", BindingFlags.Instance | BindingFlags.NonPublic);
+                    methodInfo.Invoke(Main.instance, null);
+
+                    Main.worldSurface += 250.0;
+                    Main.rockLayer += 250.0;
+                    WorldGen.worldSurface += 250.0;
+                    WorldGen.worldSurfaceHigh += 250.0;
+                    WorldGen.worldSurfaceLow += 250.0;
+                    WorldGen.rockLayer += 250.0;
+                    WorldGen.rockLayerHigh += 250.0;
+                    WorldGen.rockLayerLow += 250.0;
+                    Main.spawnTileY += maxtilesY;
+                    Main.dungeonY += maxtilesY;
+
+                    for (int i = 0; i < Main.maxTilesX; i++)
+                    {
+                        for (int j = 0; j < Main.maxTilesY; j++)
+                        {
+                            Main.tile = new Tile[i, j];
+                        }
+                    }
+
+                    for (int e = 0; e < Main.chest.Length; e++)
+                    {
+                        if (Main.chest[e] != null)
+                        {
+                            Main.chest[e].y += 250;
+                        }
+                    }
+
+                    for (int h = 0; h < Main.npc.Length; h++)
+                    {
+                        Main.npc[h].homeTileY = Main.spawnTileY;
+                        Main.npc[h].position.Y += 4000f;
+                    }
+
+                    BoneBreaker();
+
                 }));
             }
         }
+        public void BoneBreaker()
+        {
+
+        }
     }
+    /*internal class ModLiquid
+    {
+        private readonly Liquid l = new Liquid();
+        public bool gravity = true;
+
+        public Liquid liquid
+        {
+            get
+            {
+                return l;
+
+            }
+        }
+
+        public virtual Texture2D texture
+        {
+            get { return null; }
+        }
+        internal int liquidIndex;
+
+        public virtual void Update()
+        {
+        }
+
+        //Normally trigger if gravity is at false
+        public virtual void CustomPhysic()
+        {
+        }
+
+        public virtual void PreDraw(TileBatch batch)
+        {
+        }
+
+        public virtual void Draw(TileBatch batch)
+        {
+        }
+
+        public virtual void PostDraw(TileBatch batch)
+        {
+        }
+
+        public virtual void playerInteraction(Player target)
+        {
+        }
+
+        public virtual void npcInteraction(NPC target)
+        {
+        }
+
+        public virtual void liquidInteraction(ModLiquid target)
+        {
+        }
+    }*/
 }
