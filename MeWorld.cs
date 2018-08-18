@@ -24,6 +24,7 @@ using Terraria.IO;
 using Terraria.ModLoader.UI;
 using Terraria.Graphics;
 using Terraria.Map;
+using MusicMadness.Tiles;
 
 namespace MusicMadness
 {
@@ -31,6 +32,8 @@ namespace MusicMadness
     {
         private const int saveVersion = 0;
         public static bool downedTheCorpse = false;
+        public static int ScorchedBoneBlock = 0;
+
 
         public override void Initialize()
         {
@@ -73,7 +76,7 @@ namespace MusicMadness
             int num1 = tasks.FindIndex((GenPass genpass) => genpass.Name.Equals("Final Cleanup"));
             if (num1 != -1)
             {
-                tasks.Insert(num1 + 3, new PassLegacy("InsertBonePunHere", delegate (GenerationProgress progress)
+                tasks.Insert(num1 + 2, new PassLegacy("InsertBonePunHere", delegate (GenerationProgress progress)
                 {
                     progress.Message = "Breaking Your Bones...";
                     int maxtilesY = 250;
@@ -104,13 +107,24 @@ namespace MusicMadness
                     Main.spawnTileY += maxtilesY;
                     Main.dungeonY += maxtilesY;
 
+                    Tile[,] newTiles = new Tile[Main.maxTilesX, Main.maxTilesY];
                     for (int i = 0; i < Main.maxTilesX; i++)
                     {
                         for (int j = 0; j < Main.maxTilesY; j++)
                         {
-                            Main.tile = new Tile[i, j];
+                            Tile[,] array = newTiles;
+                            int bum = i;
+                            int bum2 = j;
+                            Tile tile = new Tile();
+                            array[bum, bum2] = tile;
+                            if (j >= 250)
+                            {
+                                newTiles[i, j].CopyFrom(Main.tile[i, j - 250]);
+                                Main.tile[i, j - 250] = null;
+                            }
                         }
                     }
+                    Main.tile = newTiles;
 
                     for (int e = 0; e < Main.chest.Length; e++)
                     {
@@ -120,7 +134,7 @@ namespace MusicMadness
                         }
                     }
 
-                    for (int h = 0; h < Main.npc.Length; h++)
+                    for (int h = 0; h <= Main.npc.Length; h++)
                     {
                         Main.npc[h].homeTileY = Main.spawnTileY;
                         Main.npc[h].position.Y += 4000f;
@@ -133,7 +147,36 @@ namespace MusicMadness
         }
         public void BoneBreaker()
         {
-
+            for (int q = 40; q <= 50; q++)
+            {
+                for (int p = 40; p < Main.maxTilesX; p++)
+                {
+                    bool placeSuccessful = false;
+                    Tile tile;
+                    int tileToPlace = mod.TileType<ScorchedBoneBlock>();
+                    while (!placeSuccessful)
+                    {
+                        WorldGen.PlaceTile(p, q, tileToPlace);
+                        tile = Main.tile[p, q];
+                        placeSuccessful = tile.active() && tile.type == tileToPlace;
+                    }
+                }
+            }
+            for (int q = 150; q >= 140; q--)
+            {
+                for (int p = 40; p < Main.maxTilesX; p++)
+                {
+                    bool placeSuccessful = false;
+                    Tile tile;
+                    int tileToPlace = mod.TileType<ScorchedBoneBlock>();
+                    while (!placeSuccessful)
+                    {
+                        WorldGen.PlaceTile(p, q, tileToPlace);
+                        tile = Main.tile[p, q];
+                        placeSuccessful = tile.active() && tile.type == tileToPlace;
+                    }
+                }
+            }
         }
     }
     /*internal class ModLiquid

@@ -94,6 +94,7 @@
     <Content Include="Projectiles\spikes.png" />
     <Content Include="Sounds\Music\TheOutside.wav" />
     <Content Include="Sounds\Music\UnusualCause.wav" />
+    <Content Include="Tiles\ScorchedBoneBlock.png" />
     <Content Include="UI\Meblob1.png" />
     <Content Include="UI\Meblob10.png" />
     <Content Include="UI\Meblob2.png" />
@@ -120,6 +121,7 @@
     <Compile Include="Playerone.cs" />
     <Compile Include="Projectiles\RisingBoneLava.cs" />
     <Compile Include="Projectiles\spikes.cs" />
+    <Compile Include="Tiles\ScorchedBoneBlock.cs" />
     <Compile Include="UI\MyUI.cs" />
   </ItemGroup>
   <ItemGroup>

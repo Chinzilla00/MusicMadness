@@ -248,6 +248,10 @@ namespace MusicMadness
 					}
 				}
 			}
+            if (player.position.Y <= (250 * 16) && player.position.Y > (150 * 16))
+            {
+                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " ran Out of Oxygen"), 99999999d, 0, false);
+            }
 		}
 		
 		public Vector2 oldPosition = Vector2.Zero;
