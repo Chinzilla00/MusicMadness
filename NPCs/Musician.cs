@@ -114,7 +114,7 @@ namespace MusicMadness.NPCs
 									int pork = mod.ProjectileType("RisingBoneLava");
 									int pork2 = mod.ProjectileType("spikes");
 									Projectile proj = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(player2.Bottom.Y + 850), 0f, 0f, pork, 0, 0f, player2.whoAmI)];
-									Projectile proj2 = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(proj.Top.Y - 300), 0f, 0f, pork2, 0, 0f, player2.whoAmI)];
+									Projectile proj2 = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(proj.Top.Y - 500), 0f, 0f, pork2, 0, 0f, player2.whoAmI)];
 									proj.ai[0] = player2.whoAmI;
 									proj2.ai[1] = player2.whoAmI;
 								}
@@ -127,7 +127,7 @@ namespace MusicMadness.NPCs
 									int pork = mod.ProjectileType("RisingBoneLava");
 									int pork2 = mod.ProjectileType("spikes");
 									Projectile proj = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(player2.Bottom.Y + 850), 0f, 0f, pork, 0, 0f, player2.whoAmI)];
-									Projectile proj2 = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(proj.Top.Y - 300), 0f, 0f, pork2, 0, 0f, player2.whoAmI)];
+									Projectile proj2 = Main.projectile[Projectile.NewProjectile((float)(player2.Center.X - 984), (float)(proj.Top.Y - 500), 0f, 0f, pork2, 0, 0f, player2.whoAmI)];
 									proj.ai[0] = player2.whoAmI;
 									proj2.ai[1] = player2.whoAmI;
 								}

@@ -32,8 +32,8 @@ namespace MusicMadness
     {
         private const int saveVersion = 0;
         public static bool downedTheCorpse = false;
-        public static int ScorchedBoneBlock = 0;
-
+        public static bool Wumpus = true;
+        public static int ScorchedBoneBlocks = 0;
 
         public override void Initialize()
         {
@@ -68,6 +68,22 @@ namespace MusicMadness
             downedTheCorpse = fags[0];
         }
 
+        public override void PostWorldGen()
+        {
+            Wumpus = false;
+        }
+
+        public override void ResetNearbyTileEffects()
+        {
+            Playerone modPlayer = Main.LocalPlayer.GetModPlayer<Playerone>(mod);
+            ScorchedBoneBlocks = 0;
+        }
+
+        public override void TileCountsAvailable(int[] tileCounts)
+        {
+            ScorchedBoneBlocks = tileCounts[mod.TileType("ScorchedBoneBlock")];
+        }
+
         public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
         {
             int PotsIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Pots"));
@@ -92,21 +108,6 @@ namespace MusicMadness
                     Main.bottomWorld += (float)(maxtilesY * 16);
                     Main.maxSectionsY = Main.maxTilesY / 150;
 
-                    Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY);
-                    MethodInfo methodInfo = typeof(Main).GetMethod("InitMap", BindingFlags.Instance | BindingFlags.NonPublic);
-                    methodInfo.Invoke(Main.instance, null);
-
-                    Main.worldSurface += 250.0;
-                    Main.rockLayer += 250.0;
-                    WorldGen.worldSurface += 250.0;
-                    WorldGen.worldSurfaceHigh += 250.0;
-                    WorldGen.worldSurfaceLow += 250.0;
-                    WorldGen.rockLayer += 250.0;
-                    WorldGen.rockLayerHigh += 250.0;
-                    WorldGen.rockLayerLow += 250.0;
-                    Main.spawnTileY += maxtilesY;
-                    Main.dungeonY += maxtilesY;
-
                     Tile[,] newTiles = new Tile[Main.maxTilesX, Main.maxTilesY];
                     for (int i = 0; i < Main.maxTilesX; i++)
                     {
@@ -126,6 +127,21 @@ namespace MusicMadness
                     }
                     Main.tile = newTiles;
 
+                    Main.Map = new WorldMap(Main.maxTilesX, Main.maxTilesY);
+                    MethodInfo methodInfo = typeof(Main).GetMethod("InitMap", BindingFlags.Instance | BindingFlags.NonPublic);
+                    methodInfo.Invoke(Main.instance, null);
+
+                    Main.worldSurface += 250.0;
+                    Main.rockLayer += 250.0;
+                    WorldGen.worldSurface += 250.0;
+                    WorldGen.worldSurfaceHigh += 250.0;
+                    WorldGen.worldSurfaceLow += 250.0;
+                    WorldGen.rockLayer += 250.0;
+                    WorldGen.rockLayerHigh += 250.0;
+                    WorldGen.rockLayerLow += 250.0;
+                    Main.spawnTileY += maxtilesY;
+                    Main.dungeonY += maxtilesY;
+
                     for (int e = 0; e < Main.chest.Length; e++)
                     {
                         if (Main.chest[e] != null)
@@ -134,10 +150,14 @@ namespace MusicMadness
                         }
                     }
 
-                    for (int h = 0; h <= Main.npc.Length; h++)
+                    for (int h = 0; h < Main.npc.Length; h++)
                     {
-                        Main.npc[h].homeTileY = Main.spawnTileY;
-                        Main.npc[h].position.Y += 4000f;
+                        if (Main.npc[h] != null && Main.npc[h].type == NPCID.Guide)
+                        {
+                            Main.npc[h].homeTileY += 250;
+                            Main.npc[h].position.Y += 4000;
+                            break;
+                        }
                     }
 
                     BoneBreaker();
@@ -147,89 +167,180 @@ namespace MusicMadness
         }
         public void BoneBreaker()
         {
-            for (int q = 40; q <= 50; q++)
+            for (int q = 40; q <= 75; q++)
             {
-                for (int p = 40; p < Main.maxTilesX; p++)
+                for (int p = 40; p < Main.maxTilesX - 40; p++)
                 {
-                    bool placeSuccessful = false;
-                    Tile tile;
-                    int tileToPlace = mod.TileType<ScorchedBoneBlock>();
-                    while (!placeSuccessful)
+                    Main.tile[p, q].active(true);
+                    Main.tile[p, q].type = (ushort)(mod.TileType<ScorchedBoneBlock>());
+                }
+            }
+            for (int q = 150; q >= 115; q--)
+            {
+                for (int p = 40; p < Main.maxTilesX - 40; p++)
+                {
+                    Main.tile[p, q].active(true);
+                    Main.tile[p, q].type = (ushort)(mod.TileType<ScorchedBoneBlock>());
+                }
+            }
+            float widthScale = (Main.maxTilesX / 400f);
+            int numberToGenerate = WorldGen.genRand.Next(3, (int)(5f * widthScale));
+            for (int k = 0; k < numberToGenerate; k++)
+            {
+                bool success = false;
+                int attempts = 0;
+                while (!success)
+                {
+                    attempts++;
+                    if (attempts > 800)
                     {
-                        WorldGen.PlaceTile(p, q, tileToPlace);
-                        tile = Main.tile[p, q];
-                        placeSuccessful = tile.active() && tile.type == tileToPlace;
+                        success = true;
+                        continue;
+                    }
+                    int i = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
+                    int j = 71;
+                    if (Main.tile[i, j].type == (ushort)(mod.TileType<ScorchedBoneBlock>()))
+                    {
+                        j++;
+                        if (j <= 150)
+                        {
+                            for (int l = i - 12; l < i + 12; l++)
+                            {
+                                for (int m = j; m > j - 18; m--)
+                                {
+                                    if (Main.tile[l, m].active())
+                                    {
+                                        int type = (int)Main.tile[l, m].type;
+                                    }
+                                }
+                            }
+                            success = PlaceBonecano1(i, j + 20);
+                        }
                     }
                 }
             }
-            for (int q = 150; q >= 140; q--)
+            float widthScale2 = (Main.maxTilesX / 400f);
+            int numberToGenerate2 = WorldGen.genRand.Next(3, (int)(5f * widthScale2));
+            for (int k = 0; k < numberToGenerate2; k++)
             {
-                for (int p = 40; p < Main.maxTilesX; p++)
+                bool success = false;
+                int attempts = 0;
+                while (!success)
                 {
-                    bool placeSuccessful = false;
-                    Tile tile;
-                    int tileToPlace = mod.TileType<ScorchedBoneBlock>();
-                    while (!placeSuccessful)
+                    attempts++;
+                    if (attempts > 800)
                     {
-                        WorldGen.PlaceTile(p, q, tileToPlace);
-                        tile = Main.tile[p, q];
-                        placeSuccessful = tile.active() && tile.type == tileToPlace;
+                        success = true;
+                        continue;
+                    }
+                    int i = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
+                    int j = 117;
+                    if (Main.tile[i, j].type == (ushort)(mod.TileType<ScorchedBoneBlock>()))
+                    {
+                        j++;
+                        if (j <= 150)
+                        {
+                            for (int l = i - 12; l < i + 12; l++)
+                            {
+                                for (int m = j; m > j - 18; m--)
+                                {
+                                    if (Main.tile[l, m].active())
+                                    {
+                                        int type = (int)Main.tile[l, m].type;
+                                    }
+                                }
+                            }
+                            success = PlaceBonecano2(i, j - 20);
+                        }
                     }
                 }
             }
+        }
+
+        int[,] BonecanoShape = new int[,]
+        {
+        {0,0,0,0,0,0,0,0,0,1,1,0,0,1,1,0,0,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,0,1,1,0,0,0,0,1,1,0,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0 },
+        {0,0,0,0,0,0,1,1,1,0,0,0,0,0,0,1,1,1,0,0,0,0,0,0 },
+        {0,0,0,0,0,1,1,1,1,0,0,0,0,0,0,1,1,1,1,0,0,0,0,0 },
+        {0,0,0,0,0,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,0,0 },
+        {0,0,0,0,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0 },
+        {0,0,0,0,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,0,0,0,0 },
+        {0,0,0,1,1,1,1,1,1,0,0,0,0,0,0,1,1,1,1,1,1,0,0,0 },
+        {0,0,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,0,0 },
+        {0,1,1,1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,0 },
+        {0,1,1,1,1,1,1,1,1,2,2,2,2,2,2,1,1,1,1,1,1,1,1,0 },
+        {1,1,1,1,1,1,1,1,1,3,3,3,3,3,3,1,1,1,1,1,1,1,1,1 },
+        };
+
+        public bool PlaceBonecano1(int i, int j)
+        {
+            for (int y = 0; y < BonecanoShape.GetLength(0); y++)
+            {
+                for (int x = 0; x < BonecanoShape.GetLength(1); x++)
+                {
+                    int k = i - x;
+                    int l = j - y;
+                    if (WorldGen.InWorld(k, l, 30))
+                    {
+                        Tile tile = Framing.GetTileSafely(k, l);
+                        switch (BonecanoShape[y, x])
+                        {
+                            case 1:
+                                tile.type = (ushort)(mod.TileType<ScorchedBoneBlock>());
+                                tile.active(true);
+                                break;
+                            case 2:
+                                tile.type = (ushort)(mod.TileType<SpikeyUp>());
+                                tile.active(true);
+                                break;
+                            case 3:
+                                tile.type = (ushort)(mod.TileType<SpikeyUpBottom>());
+                                tile.active(true);
+                                break;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        public bool PlaceBonecano2(int i, int j)
+        {
+            for (int y = 0; y < BonecanoShape.GetLength(0); y++)
+            {
+                for (int x = 0; x < BonecanoShape.GetLength(1); x++)
+                {
+                    int k = i + x;
+                    int l = j + y;
+                    if (WorldGen.InWorld(k, l, 30))
+                    {
+                        Tile tile = Framing.GetTileSafely(k, l);
+                        switch (BonecanoShape[y, x])
+                        {
+                            case 1:
+                                tile.type = (ushort)(mod.TileType<ScorchedBoneBlock>());
+                                tile.active(true);
+                                break;
+                            case 2:
+                                tile.type = (ushort)(mod.TileType<SpikeyDown>());
+                                tile.active(true);
+                                break;
+                            case 3:
+                                tile.type = (ushort)(mod.TileType<SpikeyDownBottom>());
+                                tile.active(true);
+                                break;
+                        }
+                    }
+                }
+            }
+            return true;
         }
     }
-    /*internal class ModLiquid
-    {
-        private readonly Liquid l = new Liquid();
-        public bool gravity = true;
-
-        public Liquid liquid
-        {
-            get
-            {
-                return l;
-
-            }
-        }
-
-        public virtual Texture2D texture
-        {
-            get { return null; }
-        }
-        internal int liquidIndex;
-
-        public virtual void Update()
-        {
-        }
-
-        //Normally trigger if gravity is at false
-        public virtual void CustomPhysic()
-        {
-        }
-
-        public virtual void PreDraw(TileBatch batch)
-        {
-        }
-
-        public virtual void Draw(TileBatch batch)
-        {
-        }
-
-        public virtual void PostDraw(TileBatch batch)
-        {
-        }
-
-        public virtual void playerInteraction(Player target)
-        {
-        }
-
-        public virtual void npcInteraction(NPC target)
-        {
-        }
-
-        public virtual void liquidInteraction(ModLiquid target)
-        {
-        }
-    }*/
 }
+       

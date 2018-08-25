@@ -28,65 +28,80 @@ namespace MusicMadness.Projectiles
 			projectile.height = 1600;
 			projectile.timeLeft = 600;
 			projectile.penetrate = 1;
-			projectile.hide = false;
 			projectile.tileCollide = false;
 			projectile.ignoreWater = true;
 		}
-		
-		
-		public override void AI()
+
+        Vector2 Noople = new Vector2(16 * (Main.maxTilesX / 2), 1520);
+
+        public override Color? GetAlpha(Color lightColor)
+        {
+            return Color.White;
+        }
+
+        public override void AI()
 		{
 			Player targeted = Main.player[(int)projectile.ai[0]];
-			if (projectile.position.Y >= Main.worldSurface)
+			if (projectile.position.Y > 16 * (Main.worldSurface) && projectile.penetrate != -1)
 			{
 				if (projectile.position.X != (targeted.Center.X - 984))
 				{
 					projectile.position.X = (targeted.Center.X - 984);
 				}
-				if (projectile.position.Y >= Main.maxTilesY - 200)
-				{
-					projectile.velocity.Y = -3f;
-				}
-				if (projectile.position.Y < Main.maxTilesY - 200)
-				{
-					projectile.velocity.Y = -3f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 450))
-				{
-					projectile.velocity.Y = -3.2f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 350))
-				{
-					projectile.velocity.Y = -3.4f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 300))
-				{
-					projectile.velocity.Y = -4f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 250))
-				{
-					projectile.velocity.Y = -4.5f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 200))
-				{
-					projectile.velocity.Y = -5f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 150))
-				{
-					projectile.velocity.Y = -6f;
-				}
-				if (projectile.position.Y <= 16 * (Main.worldSurface + 50))
-				{
-					projectile.velocity.Y = -7f;
-				}
-			}
-			else
+                if (projectile.position.Y >= Main.maxTilesY - 200)
+                {
+                    projectile.velocity.Y = -2f;
+                }
+                if (projectile.position.Y < Main.maxTilesY - 200)
+                {
+                    projectile.velocity.Y = -2f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 450))
+                {
+                    projectile.velocity.Y = -2.2f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 350))
+                {
+                    projectile.velocity.Y = -2.4f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 300))
+                {
+                    projectile.velocity.Y = -3f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 250))
+                {
+                    projectile.velocity.Y = -3.5f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 200))
+                {
+                    projectile.velocity.Y = -4f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 150))
+                {
+                    projectile.velocity.Y = -5f;
+                }
+                if (projectile.position.Y <= 16 * (Main.worldSurface + 50))
+                {
+                    projectile.velocity.Y = -6f;
+                }
+            }
+			else if (projectile.position.Y <= 16 * (Main.worldSurface) && projectile.penetrate != -1)
 			{
-				projectile.timeLeft = 0;
+				projectile.penetrate = -1;
+                targeted.ClearBuff(mod.BuffType("Escapeless"));
+                if (Main.netMode == 0)
+                {
+                    Main.NewText("Phase Two Has Started...", Color.DarkRed);
+                }
+                else
+                {
+                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Phase Two Has Started..."), Color.DarkRed);
+                }
+                targeted.Teleport(Noople);
 			}
 			if (targeted.dead || !targeted.active)
 			{
-				projectile.timeLeft = 0;
+				projectile.penetrate = -1;
 			}
 			if (targeted.Bottom.Y >= projectile.Top.Y && projectile.penetrate != -1)
 			{

@@ -33,10 +33,11 @@ namespace MusicMadness
 
 		public MusicMadness()
 		{
-			Properties = new ModProperties
-			{
-				Autoload = true,
-				AutoloadSounds = true
+            Properties = new ModProperties
+            {
+                Autoload = true,
+                AutoloadSounds = true,
+                AutoloadBackgrounds = true
 			};
 		}
 
@@ -85,15 +86,23 @@ namespace MusicMadness
 				UserInterfacerrr.SetState(null);
 			}
         }
-		
-		public override void UpdateMusic(ref int music, ref MusicPriority priority)
-		{
-			if (Main.projectile.Any(x => x.active && x.type == ProjectileType("RisingBoneLava")))
-			{
-				music = GetSoundSlot(SoundType.Music, "Sounds/Music/UnusualCause");
-				priority = MusicPriority.BossLow;
-			}
-		}
+
+        public override void UpdateMusic(ref int music, ref MusicPriority priority)
+        {
+            if (Main.myPlayer != -1 && !Main.gameMenu && Main.LocalPlayer.active)
+            {
+                if (Main.LocalPlayer.GetModPlayer<Playerone>().ZoneScorchedBone)
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/TheOutside");
+                    priority = MusicPriority.BossLow;
+                }
+                if (Main.projectile.Any(x => x.active && x.type == ProjectileType("RisingBoneLava")))
+                {
+                    music = GetSoundSlot(SoundType.Music, "Sounds/Music/UnusualCause");
+                    priority = MusicPriority.BossLow;
+                }
+            }
+        }
 
 		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{

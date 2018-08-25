@@ -12,6 +12,7 @@ using Terraria.ModLoader;
 using Terraria.ModLoader.IO;
 using Terraria.GameInput;
 using MusicMadness.Items;
+using MusicMadness.Tiles;
 
 namespace MusicMadness
 {
@@ -38,8 +39,10 @@ namespace MusicMadness
 		public bool EquippedYourDoom = false;
 		public bool Escapeless = false;
 		public bool TeleportingAllow = false;
-		
-		public override TagCompound Save()
+
+        public List<Point> TouchedTiles;
+
+        public override TagCompound Save()
 		{
 			return new TagCompound 
 			{
@@ -179,7 +182,9 @@ namespace MusicMadness
 
 		int boostType = -1;
 		int timer = 3600;
-		public override void PostUpdate()
+        int squ1 = 180;
+        int squ2 = 180;
+        public override void PostUpdate()
 		{
 			int maxAccessoryIndex = 5 + player.extraAccessorySlots;
 			for (int i = 0; i < 0 + maxAccessoryIndex; i++)
@@ -250,13 +255,69 @@ namespace MusicMadness
 			}
             if (player.position.Y <= (250 * 16) && player.position.Y > (150 * 16))
             {
-                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " ran Out of Oxygen"), 99999999d, 0, false);
+                player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " Ran Out of Oxygen"), 99999999d, 0, false);
             }
-		}
+            if (ZoneScorchedBone)
+            {
+                if (!player.HasBuff(mod.BuffType("Escapeless")))
+                {
+                    if (squ1 > 0)
+                    {
+                        squ1--;
+                    }
+                    if (squ1 == 0)
+                    {
+                        player.AddBuff(mod.BuffType("Escapeless"), 3600, false);
+                        squ1 = 180;
+                    }
+                }
+                if (!player.HasBuff(BuffID.NoBuilding))
+                {
+                    if (squ2 > 0)
+                    {
+                        squ2--;
+                    }
+                    if (squ2 == 0)
+                    {
+                        player.AddBuff(BuffID.NoBuilding, 3600, false);
+                        squ2 = 180;
+                    }
+                }
+                player.gravity = 1f;
+            }
+            int pR = (int)(player.Right.X / 16);
+            int pL = (int)(player.Left.X / 16);
+            int pT = (int)(player.Top.Y / 16);
+            int pB = (int)(player.Bottom.Y / 16);
+            for (int x = pL; x <= pR; x++)
+            {
+                for (int y = pT; y <= pB; y++)
+                {
+                    if (Main.tile[x, y].type == mod.TileType("SpikeyUp"))
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " Nailed It!"), 99999999d, 0, false);
+                    }
+                    if (Main.tile[x, y].type == mod.TileType("SpikeyUpBottom"))
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " Nailed It!"), 99999999d, 0, false);
+                    }
+                    if (Main.tile[x, y].type == mod.TileType("SpikeyDown"))
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " Nailed It!"), 99999999d, 0, false);
+                    }
+                    if (Main.tile[x, y].type == mod.TileType("SpikeyDownBottom"))
+                    {
+                        player.KillMe(PlayerDeathReason.ByCustomReason(player.name + " Nailed It!"), 99999999d, 0, false);
+                    }
+                }
+            }
+        }
 		
 		public Vector2 oldPosition = Vector2.Zero;
-		
-		public override void PostUpdateBuffs()
+
+        public bool ZoneScorchedBone = false;
+
+        public override void PostUpdateBuffs()
 		{
 			if (oldPosition != Vector2.Zero && (oldPosition.X <= player.position.X - 64f || oldPosition.X >= player.position.X + 64f || oldPosition.Y <= player.position.Y - 64f || oldPosition.Y >= player.position.Y + 64f) && player.HasBuff(mod.BuffType("Escapeless")))
 			{
@@ -264,5 +325,65 @@ namespace MusicMadness
 			}
 			oldPosition = player.position;
 		}
-	}
+
+        public override void UpdateBiomes()
+        {
+            ZoneScorchedBone = (MeWorld.ScorchedBoneBlocks > 200);
+        }
+
+        public override bool CustomBiomesMatch(Player other)
+        {
+            Playerone modOther = other.GetModPlayer<Playerone>(mod);
+            return ZoneScorchedBone == modOther.ZoneScorchedBone;
+        }
+
+        public override void CopyCustomBiomesTo(Player other)
+        {
+            Playerone modOther = other.GetModPlayer<Playerone>(mod);
+            modOther.ZoneScorchedBone = ZoneScorchedBone;
+        }
+
+        public override void SendCustomBiomes(BinaryWriter writer)
+        {
+            BitsByte flags = new BitsByte();
+            flags[0] = ZoneScorchedBone;
+            writer.Write(flags);
+        }
+
+        public override void ReceiveCustomBiomes(BinaryReader reader)
+        {
+            BitsByte flags = reader.ReadByte();
+            ZoneScorchedBone = flags[0];
+        }
+
+        public override Texture2D GetMapBackgroundImage()
+        {
+            if (ZoneScorchedBone)
+            {
+                return mod.GetTexture("BackgroundDoom");
+            }
+            return null;
+        }
+
+        public static readonly PlayerLayer MiscEffectsBack = new PlayerLayer("MusicMadness", "MiscEffectsBack", PlayerLayer.MiscEffectsBack, delegate (PlayerDrawInfo drawInfo)
+        {
+            if (MeWorld.ScorchedBoneBlocks > 180)
+            {
+                Player drawPlayer = drawInfo.drawPlayer;
+                Mod mod = ModLoader.GetMod("MusicMadness");
+                Playerone modPlayer = drawPlayer.GetModPlayer<Playerone>(mod);
+                Texture2D texture = mod.GetTexture("BackgroundDoomActual");
+                int drawX = (int)(drawInfo.position.X + drawPlayer.width / 2f - Main.screenPosition.X);
+                int drawY = (int)(drawInfo.position.Y + drawPlayer.height / 2f - Main.screenPosition.Y);
+                DrawData data = new DrawData(texture, new Vector2(drawX, drawY), null, Color.White, 0f, new Vector2(texture.Width / 2f, texture.Height / 2f), 3f, SpriteEffects.None, 0);
+                Main.playerDrawData.Add(data);
+            }
+        });
+
+        public override void ModifyDrawLayers(List<PlayerLayer> layers)
+        {
+            MiscEffectsBack.visible = true;
+            layers.Insert(0, MiscEffectsBack);
+        }
+    }
 }

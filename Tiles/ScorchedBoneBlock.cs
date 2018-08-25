@@ -38,7 +38,14 @@ namespace MusicMadness.Tiles
         }
         public override bool CanPlace(int i, int j)
         {
-            return false;
+            if (MeWorld.Wumpus)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public override void FloorVisuals(Player player)

@@ -67,6 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BackgroundDoom.png" />
+    <Content Include="BackgroundDoomActual.png" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.dll" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.Game.dll" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.Graphics.dll" />
@@ -95,6 +97,10 @@
     <Content Include="Sounds\Music\TheOutside.wav" />
     <Content Include="Sounds\Music\UnusualCause.wav" />
     <Content Include="Tiles\ScorchedBoneBlock.png" />
+    <Content Include="Tiles\SpikeyDownBottom.png" />
+    <Content Include="Tiles\SpikeyDown.png" />
+    <Content Include="Tiles\SpikeyUpBottom.png" />
+    <Content Include="Tiles\SpikeyUp.png" />
     <Content Include="UI\Meblob1.png" />
     <Content Include="UI\Meblob10.png" />
     <Content Include="UI\Meblob2.png" />
@@ -121,6 +127,10 @@
     <Compile Include="Playerone.cs" />
     <Compile Include="Projectiles\RisingBoneLava.cs" />
     <Compile Include="Projectiles\spikes.cs" />
+    <Compile Include="Tiles\SpikeyDown.cs" />
+    <Compile Include="Tiles\SpikeyDownBottom.cs" />
+    <Compile Include="Tiles\SpikeyUp.cs" />
+    <Compile Include="Tiles\SpikeyUpBottom.cs" />
     <Compile Include="Tiles\ScorchedBoneBlock.cs" />
     <Compile Include="UI\MyUI.cs" />
   </ItemGroup>
