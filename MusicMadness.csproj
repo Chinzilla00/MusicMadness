@@ -68,7 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BackgroundDoom.png" />
-    <Content Include="BackgroundDoomActual.png" />
+    <Content Include="Mappy.png" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.dll" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.Game.dll" />
     <Content Include="bin\Debug\Microsoft.Xna.Framework.Graphics.dll" />
@@ -78,7 +78,6 @@
     <Content Include="bin\Debug\ReLogic.dll" />
     <Content Include="bin\Debug\Terraria.exe" />
     <Content Include="Buffs\Escapeless.png" />
-    <Content Include="Buffs\QuickKill.png" />
     <Content Include="build.txt" />
     <Content Include="description.txt" />
     <Content Include="ImportDefaultDll.csproj.user" />
@@ -96,6 +95,7 @@
     <Content Include="Projectiles\spikes.png" />
     <Content Include="Sounds\Music\TheOutside.wav" />
     <Content Include="Sounds\Music\UnusualCause.wav" />
+    <Content Include="Tiles\InvisibleBlocks.png" />
     <Content Include="Tiles\ScorchedBoneBlock.png" />
     <Content Include="Tiles\SpikeyDownBottom.png" />
     <Content Include="Tiles\SpikeyDown.png" />
@@ -114,7 +114,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffs\Escapeless.cs" />
-    <Compile Include="Buffs\QuickKill.cs" />
     <Compile Include="Items\BrokenMusicEmblem.cs" />
     <Compile Include="Items\MusicEmblem.cs" />
     <Compile Include="Items\MusicianVoodooDoll.cs" />
@@ -127,6 +126,7 @@
     <Compile Include="Playerone.cs" />
     <Compile Include="Projectiles\RisingBoneLava.cs" />
     <Compile Include="Projectiles\spikes.cs" />
+    <Compile Include="Tiles\InvisibleBlocks.cs" />
     <Compile Include="Tiles\SpikeyDown.cs" />
     <Compile Include="Tiles\SpikeyDownBottom.cs" />
     <Compile Include="Tiles\SpikeyUp.cs" />

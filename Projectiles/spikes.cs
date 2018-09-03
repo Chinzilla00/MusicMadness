@@ -42,56 +42,25 @@ namespace MusicMadness.Projectiles
 			Player targeted = Main.player[(int)projectile.ai[1]];
             if (projectile.position.Y > 16 * (Main.worldSurface) && projectile.penetrate != -1)
             {
-				if (projectile.position.X != (targeted.Center.X - 984))
-				{
-					projectile.position.X = (targeted.Center.X - 984);
-				}
-                if (projectile.position.Y >= Main.maxTilesY - 200)
+                if (projectile.position.X != (targeted.Center.X - 984))
                 {
-                    projectile.velocity.Y = -2f;
+                    projectile.position.X = (targeted.Center.X - 984);
                 }
-                if (projectile.position.Y < Main.maxTilesY - 200)
+                Projectile progee = Main.projectile[mod.ProjectileType("RisingBoneLava")];
+                if (projectile.position.Y != (progee.position.Y - 500))
                 {
-                    projectile.velocity.Y = -2f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 450))
-                {
-                    projectile.velocity.Y = -2.2f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 350))
-                {
-                    projectile.velocity.Y = -2.4f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 300))
-                {
-                    projectile.velocity.Y = -3f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 250))
-                {
-                    projectile.velocity.Y = -3.5f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 200))
-                {
-                    projectile.velocity.Y = -4f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 150))
-                {
-                    projectile.velocity.Y = -5f;
-                }
-                if (projectile.position.Y <= 16 * (Main.worldSurface + 50))
-                {
-                    projectile.velocity.Y = -6f;
+                    projectile.position.Y = (progee.position.Y - 500);
                 }
             }
-            else if (projectile.position.Y <= 16 * (Main.worldSurface) && projectile.penetrate != -1)
+            else if (projectile.position.Y <= 16 * (Main.worldSurface) && projectile.timeLeft != 0)
             {
-				projectile.penetrate = -1;
-			}
+                projectile.timeLeft = 0;
+            }
 			if (targeted.dead || !targeted.active)
 			{
-				projectile.penetrate = -1;
-			}
-			if (targeted.Top.Y <= projectile.Bottom.Y && projectile.penetrate != -1)
+                projectile.timeLeft = 0;
+            }
+			if (targeted.Top.Y <= projectile.Bottom.Y && projectile.timeLeft != 0)
 			{
 				targeted.KillMe(PlayerDeathReason.ByCustomReason(targeted.name + " Hit there head on a Spike, Fell down, THEN Boiled."), 99999999d, 0, false);
 			}

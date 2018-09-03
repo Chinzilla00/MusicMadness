@@ -85,25 +85,18 @@ namespace MusicMadness.Projectiles
                     projectile.velocity.Y = -6f;
                 }
             }
-			else if (projectile.position.Y <= 16 * (Main.worldSurface) && projectile.penetrate != -1)
+			else if (projectile.position.Y <= 16 * (Main.worldSurface) && projectile.timeLeft != 0)
 			{
-				projectile.penetrate = -1;
+				projectile.timeLeft = 0;
                 targeted.ClearBuff(mod.BuffType("Escapeless"));
-                if (Main.netMode == 0)
-                {
-                    Main.NewText("Phase Two Has Started...", Color.DarkRed);
-                }
-                else
-                {
-                    NetMessage.BroadcastChatMessage(NetworkText.FromLiteral("Phase Two Has Started..."), Color.DarkRed);
-                }
+                Main.NewText("Phase Two Has Started...", Color.DarkRed);
                 targeted.Teleport(Noople);
 			}
 			if (targeted.dead || !targeted.active)
 			{
-				projectile.penetrate = -1;
+				projectile.timeLeft = 0;
 			}
-			if (targeted.Bottom.Y >= projectile.Top.Y && projectile.penetrate != -1)
+			if (targeted.Bottom.Y >= projectile.Top.Y && projectile.timeLeft != 0)
 			{
 				targeted.KillMe(PlayerDeathReason.ByCustomReason(targeted.name + " Boiled."), 99999999d, 0, false);
 			}

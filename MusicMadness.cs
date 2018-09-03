@@ -16,6 +16,8 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Linq;
 using Terraria.Utilities;
+using Terraria.Map;
+using System.Reflection;
 
 namespace MusicMadness
 {
@@ -53,15 +55,17 @@ namespace MusicMadness
 				UserInterfacer = new UserInterface();
 				UserInterfacerr = new UserInterface();
 				UserInterfacerrr = new UserInterface();
-			}
+            }
 		}
 
 		public override void Unload()
 		{
 			Instance = null;
 		}
-		
-		public override void UpdateUI(GameTime gameTime)
+
+        public RenderTarget2D[,] mapTarget = new RenderTarget2D[Main.mapTargetX, Main.mapTargetY];
+
+        public override void UpdateUI(GameTime gameTime)
 		{
 			if (UserInterfacer != null && MusicBoxUI.visible)
 			{
@@ -104,7 +108,7 @@ namespace MusicMadness
             }
         }
 
-		public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
+        public override void ModifyInterfaceLayers(List<GameInterfaceLayer> layers)
 		{
 			int MouseTextIndex = layers.FindIndex(layer => layer.Name.Equals("Vanilla: Mouse Text"));
 			if (MouseTextIndex != -1)
@@ -112,5 +116,5 @@ namespace MusicMadness
 				layers.Insert(MouseTextIndex, new LegacyGameInterfaceLayer("MusicMadness: Combine an Accessory with a Music Box!", delegate { if (MusicBoxUI.visible) { MusicBoxUI.Draw(Main.spriteBatch); } if (AccessoryUI.visible) { AccessoryUI.Draw(Main.spriteBatch); } if (BuyableUI.visible) { BuyableUI.Draw(Main.spriteBatch); } return true; }, InterfaceScaleType.UI));
 			}
 		}
-	}
+    }
 }
